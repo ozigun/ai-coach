@@ -93,7 +93,7 @@ export default function GoalPage() {
     <section className="min-h-screen flex items-center justify-center bg-blue-50 px-4">
       <div className="w-full max-w-2xl bg-white p-10 rounded-lg shadow-lg border border-gray-200 text-gray-800">
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
-          What's your fitness goal?
+          What&apos;s your fitness goal?
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">

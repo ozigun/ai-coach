@@ -62,7 +62,7 @@ export default function UserPlanPage() {
 
       <div className="grid gap-6 md:grid-cols-2 mb-8">
         <div>
-          <h3 className="font-semibold mb-2">Today's Workout Duration</h3>
+          <h3 className="font-semibold mb-2">Today&apos;s Workout Duration</h3>
           <div className="flex gap-2 flex-wrap">
             {["15", "30", "45", "60"].map((min) => (
               <button

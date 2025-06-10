@@ -16,7 +16,7 @@ export default function UserInfoPage() {
     } else {
       setGender(savedGender);
     }
-  }, []);
+  }, [router]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function HomePage() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function HomePage() {
           <button
             onClick={() => handleGenderSelect("male")}
             className="flex flex-col items-center bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-4 px-6 rounded-xl shadow-md transition w-40">
-            <img
+            <Image
               src="https://cdn-icons-png.flaticon.com/512/147/147144.png"
               alt="Male Icon"
               className="w-16 h-16 mb-2"
