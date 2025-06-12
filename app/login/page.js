@@ -24,7 +24,7 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        alert("Login successful!");
+        localStorage.setItem("isLoggedIn", "true");
         router.push(`/plan/${data.userId}`);
       } else {
         alert(data.error || "Login failed");

@@ -48,30 +48,34 @@ export default function UserPlanPage() {
 
   if (!userData) {
     return (
-      <div className="text-center text-red-500 font-semibold mt-10">
+      <div className="text-center text-red-600 font-semibold mt-20 animate-pulse">
         Loading user data...
       </div>
     );
   }
 
   return (
-    <section className="max-w-3xl mx-auto mt-10 px-6 text-gray-800">
-      <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">
-        Welcome Back, {userData.email}
+    <section className="max-w-4xl mx-auto mt-12 px-6 text-gray-900 font-sans">
+      <h2 className="text-4xl font-extrabold text-blue-700 mb-8 text-center drop-shadow-md">
+        Welcome Back,{" "}
+        <span className="underline decoration-pink-500">{userData.email}</span>
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-2 mb-8">
+      <div className="grid gap-8 md:grid-cols-2 mb-10">
+        {/* Duration Selector */}
         <div>
-          <h3 className="font-semibold mb-2">Today&apos;s Workout Duration</h3>
-          <div className="flex gap-2 flex-wrap">
+          <h3 className="font-semibold mb-4 text-lg tracking-wide text-gray-700">
+            Today&apos;s Workout Duration
+          </h3>
+          <div className="flex gap-3 flex-wrap">
             {["15", "30", "45", "60"].map((min) => (
               <button
                 key={min}
                 onClick={() => setDuration(min)}
-                className={`px-4 py-2 rounded border ${
+                className={`px-5 py-3 rounded-lg border-2 font-medium transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                   duration === min
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-800 border-gray-300 hover:bg-blue-100"
                 }`}>
                 {min} min
               </button>
@@ -79,17 +83,20 @@ export default function UserPlanPage() {
           </div>
         </div>
 
+        {/* Equipment Selector */}
         <div>
-          <h3 className="font-semibold mb-2">Available Equipment</h3>
-          <div className="flex gap-2 flex-wrap">
+          <h3 className="font-semibold mb-4 text-lg tracking-wide text-gray-700">
+            Available Equipment
+          </h3>
+          <div className="flex gap-3 flex-wrap">
             {["Bodyweight", "Dumbbells", "Bands", "Barbell"].map((eq) => (
               <button
                 key={eq}
                 onClick={() => setEquipment(eq)}
-                className={`px-4 py-2 rounded border ${
+                className={`px-5 py-3 rounded-lg border-2 font-medium transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                   equipment === eq
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-800 border-gray-300 hover:bg-blue-100"
                 }`}>
                 {eq}
               </button>
@@ -100,16 +107,17 @@ export default function UserPlanPage() {
 
       <button
         onClick={handleGenerate}
-        className="w-full bg-blue-600 text-white font-semibold py-3 rounded hover:bg-blue-700 transition">
-        {loading ? "Generating..." : "Generate Workout Plan"}
+        disabled={loading}
+        className={`w-full bg-gradient-to-r from-blue-600 to-pink-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-blue-700 hover:to-pink-600 transition disabled:opacity-50 disabled:cursor-not-allowed`}>
+        {loading ? "Generating your plan..." : "Generate Workout Plan"}
       </button>
 
       {result && (
-        <div className="mt-6 bg-white p-4 rounded shadow whitespace-pre-line border border-gray-300">
-          <h3 className="text-xl font-semibold text-blue-600 mb-2">
+        <div className="mt-10 bg-white p-6 rounded-3xl shadow-xl border border-gray-200 max-h-[400px] overflow-y-auto whitespace-pre-line text-gray-800 font-medium leading-relaxed scroll-smooth">
+          <h3 className="text-2xl font-bold text-blue-600 mb-4">
             Your AI Workout Plan
           </h3>
-          <p className="text-gray-800">{result}</p>
+          <p>{result}</p>
         </div>
       )}
     </section>
