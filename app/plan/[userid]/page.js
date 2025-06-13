@@ -116,11 +116,11 @@ export default function UserPlanPage() {
       </div>
 
       {result && (
-        <div className="mt-10 bg-white p-6 rounded-3xl shadow-xl border border-gray-200 max-h-[400px] overflow-y-auto whitespace-pre-line text-gray-800 font-medium leading-relaxed scroll-smooth">
-          <h3 className="flex items-center gap-2 text-2xl font-bold text-blue-600 mb-4">
+        <div className="mt-10 text-gray-900 leading-relaxed whitespace-pre-line">
+          <h3 className="text-2xl font-bold text-blue-700 mb-4 flex items-center gap-2">
             <FaRobot /> Your AI Workout Plan
           </h3>
-          <p>{result}</p>
+          <p className="text-base sm:text-lg">{result}</p>
         </div>
       )}
     </section>

@@ -64,7 +64,7 @@ export default function UserDashboardLayout({ children }) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 md:p-12 overflow-y-auto ml-0 md:ml-0">
+      <main className="flex-1 p-6 md:p-12 overflow-y-auto ml-0 ">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl min-h-[80vh]">
           {children}
         </div>
