@@ -66,7 +66,7 @@ export default function UserPlanPage() {
         {/* Duration Selector */}
         <div className="text-center">
           <h3 className="flex justify-center items-center gap-2 font-semibold mb-6 text-lg tracking-wide text-gray-700">
-            <FaClock className="text-blue-600" /> Today's Workout Duration
+            <FaClock className="text-blue-600" /> Today&apos;s Workout Duration
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {["15", "30", "45", "60"].map((min) => (
