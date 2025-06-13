@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { FaClock, FaDumbbell, FaRobot } from "react-icons/fa";
 
 export default function UserPlanPage() {
   const { userid } = useParams();
@@ -61,18 +62,18 @@ export default function UserPlanPage() {
         <span className="underline decoration-pink-500">{userData.email}</span>
       </h2>
 
-      <div className="grid gap-8 md:grid-cols-2 mb-10">
+      <div className="grid gap-10 md:grid-cols-2 mb-12">
         {/* Duration Selector */}
-        <div>
-          <h3 className="font-semibold mb-4 text-lg tracking-wide text-gray-700">
-            Today&apos;s Workout Duration
+        <div className="text-center">
+          <h3 className="flex justify-center items-center gap-2 font-semibold mb-6 text-lg tracking-wide text-gray-700">
+            <FaClock className="text-blue-600" /> Today's Workout Duration
           </h3>
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-wrap justify-center gap-4">
             {["15", "30", "45", "60"].map((min) => (
               <button
                 key={min}
                 onClick={() => setDuration(min)}
-                className={`px-5 py-3 rounded-lg border-2 font-medium transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                className={`min-w-[90px] text-sm sm:text-base px-5 py-3 rounded-xl border-2 font-medium transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                   duration === min
                     ? "bg-blue-600 text-white border-blue-600"
                     : "bg-white text-gray-800 border-gray-300 hover:bg-blue-100"
@@ -84,16 +85,16 @@ export default function UserPlanPage() {
         </div>
 
         {/* Equipment Selector */}
-        <div>
-          <h3 className="font-semibold mb-4 text-lg tracking-wide text-gray-700">
-            Available Equipment
+        <div className="text-center">
+          <h3 className="flex justify-center items-center gap-2 font-semibold mb-6 text-lg tracking-wide text-gray-700">
+            <FaDumbbell className="text-blue-600" /> Available Equipment
           </h3>
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-wrap justify-center gap-4">
             {["Bodyweight", "Dumbbells", "Bands", "Barbell"].map((eq) => (
               <button
                 key={eq}
                 onClick={() => setEquipment(eq)}
-                className={`px-5 py-3 rounded-lg border-2 font-medium transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                className={`min-w-[110px] text-sm sm:text-base px-5 py-3 rounded-xl border-2 font-medium transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                   equipment === eq
                     ? "bg-blue-600 text-white border-blue-600"
                     : "bg-white text-gray-800 border-gray-300 hover:bg-blue-100"
@@ -105,17 +106,19 @@ export default function UserPlanPage() {
         </div>
       </div>
 
-      <button
-        onClick={handleGenerate}
-        disabled={loading}
-        className={`w-full bg-gradient-to-r from-blue-600 to-pink-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-blue-700 hover:to-pink-600 transition disabled:opacity-50 disabled:cursor-not-allowed`}>
-        {loading ? "Generating your plan..." : "Generate Workout Plan"}
-      </button>
+      <div className="text-center">
+        <button
+          onClick={handleGenerate}
+          disabled={loading}
+          className="w-full sm:w-auto px-10 bg-gradient-to-r from-blue-600 to-pink-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:from-blue-700 hover:to-pink-600 transition disabled:opacity-50 disabled:cursor-not-allowed">
+          {loading ? "Generating your plan..." : "Generate Workout Plan"}
+        </button>
+      </div>
 
       {result && (
         <div className="mt-10 bg-white p-6 rounded-3xl shadow-xl border border-gray-200 max-h-[400px] overflow-y-auto whitespace-pre-line text-gray-800 font-medium leading-relaxed scroll-smooth">
-          <h3 className="text-2xl font-bold text-blue-600 mb-4">
-            Your AI Workout Plan
+          <h3 className="flex items-center gap-2 text-2xl font-bold text-blue-600 mb-4">
+            <FaRobot /> Your AI Workout Plan
           </h3>
           <p>{result}</p>
         </div>

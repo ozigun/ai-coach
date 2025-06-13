@@ -30,7 +30,7 @@ export default function HomePage() {
         </p>
 
         {/* 👤 Gender Selection Cards */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center mt-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
           <button
             onClick={() => handleGenderSelect("male")}
             className="flex flex-col items-center bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-4 px-6 rounded-xl shadow-md transition w-40">

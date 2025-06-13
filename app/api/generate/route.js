@@ -20,18 +20,14 @@ export async function POST(req) {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "openai/gpt-3.5-turbo", // veya "mistralai/mixtral-8x7b"
-          messages: [
-            {
-              role: "user",
-              content: prompt,
-            },
-          ],
+          model: "openai/gpt-3.5-turbo", // alternatif: "mistralai/mixtral-8x7b"
+          messages: [{ role: "user", content: prompt }],
         }),
       }
     );
 
     const data = await response.json();
+    console.log("OpenRouter raw response:", data); // ✅ Debug log
 
     if (!data.choices || !data.choices[0]?.message?.content) {
       throw new Error("Invalid response from OpenRouter");
