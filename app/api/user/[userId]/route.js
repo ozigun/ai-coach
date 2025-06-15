@@ -19,3 +19,18 @@ export async function GET(req, { params }) {
     return NextResponse.json({ success: false, error: "Database error" });
   }
 }
+
+export async function PUT(req, { params }) {
+  try {
+    const db = await connectToDatabase();
+    const updates = await req.json();
+    const result = await db
+      .collection("users")
+      .updateOne({ _id: new ObjectId(params.userId) }, { $set: updates });
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Update error:", err);
+    return NextResponse.json({ success: false, error: "Update failed" });
+  }
+}
