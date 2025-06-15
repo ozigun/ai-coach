@@ -47,7 +47,9 @@ export default function UserDashboardLayout({ children }) {
             <FaDumbbell className="text-xl" />
             <span className="font-semibold text-lg">Workout Plan</span>
           </a>
-          <a href="#" className={linkClass("#")}>
+          <a
+            href={`/plan/${userid}/progress`}
+            className={linkClass(`/plan/${userid}/progress`)}>
             <FaChartLine className="text-xl" />
             <span className="font-semibold text-lg">Progress</span>
           </a>

@@ -11,6 +11,7 @@ export default function UserPlanPage() {
   const [equipment, setEquipment] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -31,6 +32,7 @@ export default function UserPlanPage() {
 
     setLoading(true);
     setResult("");
+    setSaved(false);
 
     try {
       const res = await fetch("/api/generate", {
@@ -44,6 +46,29 @@ export default function UserPlanPage() {
       setResult("Something went wrong.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSaveWorkout = async () => {
+    try {
+      const res = await fetch("/api/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: userid,
+          date: new Date().toISOString().split("T")[0],
+          workoutText: result,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert("Workout saved to progress!");
+        setSaved(true);
+      } else {
+        alert("Save failed.");
+      }
+    } catch (err) {
+      alert("Error saving workout.");
     }
   };
 
@@ -120,7 +145,14 @@ export default function UserPlanPage() {
           <h3 className="text-2xl font-bold text-blue-700 mb-4 flex items-center gap-2">
             <FaRobot /> Your AI Workout Plan
           </h3>
-          <p className="text-base sm:text-lg">{result}</p>
+          <p className="text-base sm:text-lg mb-4">{result}</p>
+
+          <button
+            onClick={handleSaveWorkout}
+            disabled={saved}
+            className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition disabled:opacity-50">
+            {saved ? "Saved to Progress ✅" : "Mark as Done"}
+          </button>
         </div>
       )}
     </section>
