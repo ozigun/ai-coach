@@ -2,7 +2,8 @@ import { connectToDatabase } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  const { userId, date, workoutText } = await req.json();
+  const { userId, date, workoutText, durationDone, difficulty } =
+    await req.json();
   try {
     const db = await connectToDatabase();
     await db.collection("progress").insertOne({
