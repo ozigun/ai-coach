@@ -9,6 +9,8 @@ export async function POST(req) {
       userId,
       date,
       workoutText,
+      durationDone,
+      difficulty,
     });
 
     return NextResponse.json({ success: true });

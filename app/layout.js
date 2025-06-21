@@ -5,13 +5,12 @@ import Script from "next/script";
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
-      <head>
+      <head></head>
+      <body className="h-full bg-gray-50 text-gray-800 font-sans">
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9638855853940707"
           crossorigin="anonymous"></Script>
-      </head>
-      <body className="h-full bg-gray-50 text-gray-800 font-sans">
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-1 mx-auto w-full ">{children}</main>
