@@ -11,6 +11,19 @@ export async function POST(req) {
       );
     }
 
+    const apiKey = process.env.OPENROUTER_API_KEY;
+
+    if (!apiKey) {
+      console.error("API key is missing");
+      return NextResponse.json(
+        { error: "Server misconfiguration: Missing API key" },
+        { status: 500 }
+      );
+    }
+
+    const model = "openai/gpt-3.5-turbo-16k";
+    console.log("Using model:", model);
+
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
@@ -20,24 +33,27 @@ export async function POST(req) {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "openai/gpt-3.5-turbo", // alternatif: "mistralai/mixtral-8x7b"
+          model,
           messages: [{ role: "user", content: prompt }],
         }),
       }
     );
 
-    const data = await response.json();
-    console.log("OpenRouter raw response:", data); // ✅ Debug log
-
-    if (!data.choices || !data.choices[0]?.message?.content) {
-      throw new Error("Invalid response from OpenRouter");
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("OpenRouter API error:", errorData);
+      return NextResponse.json(
+        { error: "OpenRouter API request failed", detail: errorData },
+        { status: response.status }
+      );
     }
 
+    const data = await response.json();
     return NextResponse.json({ result: data.choices[0].message.content });
   } catch (error) {
-    console.error("OpenRouter error:", error);
+    console.error("Unexpected error:", error);
     return NextResponse.json(
-      { error: "AI generation failed" },
+      { error: "AI generation failed", detail: error.message },
       { status: 500 }
     );
   }
