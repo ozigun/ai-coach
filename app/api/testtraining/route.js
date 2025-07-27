@@ -3,9 +3,15 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   const body = await req.json();
-  const { userId, pushups, squats, date } = body;
+  const { userId, pushups, squats, plank, burpees, date } = body;
 
-  if (!userId || pushups == null || squats == null) {
+  if (
+    !userId ||
+    pushups == null ||
+    squats == null ||
+    plank == null ||
+    burpees == null
+  ) {
     return NextResponse.json({ error: "Eksik veri" }, { status: 400 });
   }
 
@@ -23,10 +29,8 @@ export async function POST(req) {
       },
     };
 
-    // Performans test verisini kaydet
     await db.collection("performanceTests").insertOne(testEntry);
 
-    // Kullanıcının test yaptığı bilgisi güncelleniyor
     await db
       .collection("users")
       .updateOne({ _id: userId }, { $set: { hasCompletedInitialTest: true } });
