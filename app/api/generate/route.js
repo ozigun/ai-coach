@@ -21,7 +21,7 @@ export async function POST(req) {
       );
     }
 
-    const model = "mistralai/mistral-7b-instruct:free";
+    const model = "openai/gpt-oss-120b:free";
     console.log("Using model:", model);
 
     const response = await fetch(
