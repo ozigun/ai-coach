@@ -21,7 +21,7 @@ export async function POST(req) {
       );
     }
 
-    const model = "google/gemma-3n-e2b-it:free";
+    const model = "openai/gpt-oss-120b:free";
     console.log("Using model:", model);
 
     const response = await fetch(
