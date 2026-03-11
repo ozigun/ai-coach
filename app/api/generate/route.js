@@ -21,7 +21,7 @@ export async function POST(req) {
       );
     }
 
-    const model = "google/gemini-2.0-flash-lite-preview-02-05:free";
+    const model = "google/gemma-3n-e2b-it:free";
     console.log("Using model:", model);
 
     const response = await fetch(
