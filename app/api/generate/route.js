@@ -21,7 +21,7 @@ export async function POST(req) {
       );
     }
 
-    const model = "openai/gpt-oss-20b:free";
+    const model = "google/gemini-2.0-flash-lite-preview-02-05:free";
     console.log("Using model:", model);
 
     const response = await fetch(
